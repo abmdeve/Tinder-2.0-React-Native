@@ -1,19 +1,22 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { NavigationStackScreenProps } from "../../routes/Navigator";
+import useAuth from "../../hooks/useAuth";
 
-const Home = ({ navigation }: NavigationStackScreenProps<"Home">) => {
+const Login = ({ navigation }: NavigationStackScreenProps<"Login">) => {
+
+  
   return (
     <View>
-      <Text>I am a Home</Text>
+      <Text>Login</Text>
       <Button
-        title="GO TO CHATS SCREEN..."
-        onPress={() => navigation.navigate("Chats")}
+        title="GO TO HOME SCREEN..."
+        onPress={() => navigation.navigate("Home")}
       />
     </View>
   );
 };
 
-export default Home;
+export default Login;
 
 const styles = StyleSheet.create({});
