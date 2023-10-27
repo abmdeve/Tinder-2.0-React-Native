@@ -23,7 +23,7 @@ export type NavigationStackScreenProps<T extends keyof ParamsListStackScreen> =
   NativeStackScreenProps<ParamsListStackScreen, T>;
 
 const Navigator = () => {
-  const user = useAuth()
+  const user = useAuth();
   const isLogging = false;
   return (
     <Stack.Navigator>
@@ -34,7 +34,12 @@ const Navigator = () => {
           <Stack.Screen name="Chats" component={Chats} />
         </>
       ) : (
-        <Stack.Screen name="Login" component={Login} />
+        <>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Chats" component={Chats} />
+        </>
       )}
     </Stack.Navigator>
   );

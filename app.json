@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tinder-2.0-React-Native",
-    "slug": "Tinder-2.0-React-Native",
+    "name": "Tinder-React-Native",
+    "slug": "Tinder-React-Native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,17 +15,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.abmdev.TinderReactNative"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.abmdev.TinderReactNative"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme": "mycoolredirect"
+    "scheme": "mycoolredirect",
+    "extra": {
+      "eas": {
+        "projectId": "af9331c2-4ba3-402d-8525-0169d1dd3698"
+      }
+    }
   }
 }
