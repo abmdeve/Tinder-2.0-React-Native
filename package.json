@@ -9,22 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/cli-platform-android": "^11.3.9",
-=======
-    "@react-native-async-storage/async-storage": "1.18.2",
->>>>>>> cc31a095dff65b5c6ffc72f200ee7645c5d6cd94
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
     "expo": "~49.0.15",
     "expo-auth-session": "~5.0.2",
     "expo-crypto": "~12.4.1",
-<<<<<<< HEAD
     "expo-splash-screen": "~0.20.5",
-=======
->>>>>>> cc31a095dff65b5c6ffc72f200ee7645c5d6cd94
     "expo-status-bar": "~1.6.0",
     "expo-web-browser": "~12.3.2",
     "firebase": "^10.5.2",
@@ -33,11 +26,7 @@
     "react-native": "0.72.6",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
-<<<<<<< HEAD
     "react-native-web": "~0.19.6"
-=======
-    "yarn": "^1.22.19"
->>>>>>> cc31a095dff65b5c6ffc72f200ee7645c5d6cd94
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
