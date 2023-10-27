@@ -1,5 +1,11 @@
 import { View, Text } from "react-native";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import {
@@ -24,7 +30,9 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-
+  const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
   const [request, response, promptAync] = Google.useAuthRequest({
     androidClientId:
       "731010029797-im813j5hhig46c03aqm4urspci8ffimq.apps.googleusercontent.com",
@@ -34,25 +42,59 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       "731010029797-gstb7gn26b112r9ucf2528c520g2otgd.apps.googleusercontent.com",
   });
 
-  useEffect(() => {
+  const signInWithGoogle = () => {
     if (response?.type === "success") {
       const credential = GoogleAuthProvider.credential(
         response.authentication?.idToken
       );
       signInWithCredential(auth, credential);
     }
+  };
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // LOGGED IN...
+        setUser(user);
+      } else {
+        // NOT LOGGED IN...
+        setUser(null);
+      }
+      setLoadingInitial(false);
+    });
+    return unsub();
   }, [response]);
 
-  
+  const logout = () => {
+    console.log("LOGOUT...")
+    setIsLoading(true);
+    signOut(auth)
+      .catch((error) => console.log("ERROR SIGNOUT AUTH IN THE CONSOLE", error))
+      .finally(() => setLoadingInitial(false));
+  };
+
+  const memoValue = useMemo(
+    () => ({
+      user,
+      promptAync,
+      loadingInitial,
+      logout,
+      signInWithGoogle,
+    }),
+    [user, loadingInitial]
+  );
 
   return (
-    <AuthContext.Provider
-      value={{ user: "Sonny", promptAync }}
-    >
+    <AuthContext.Provider value={memoValue}>
+      {/* {!loadingInitial && children} */}
       {children}
     </AuthContext.Provider>
   );
 };
+// <AuthContext.Provider
+//   // value={{ user: user, promptAync }}
+// >
+//   {children}
+// </AuthContext.Provider>
 
 export default function useAuth() {
   return useContext(AuthContext);

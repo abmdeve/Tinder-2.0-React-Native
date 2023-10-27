@@ -27,15 +27,19 @@ const Navigator = () => {
   const isLogging = false;
   return (
     <Stack.Navigator>
-      {isLogging ? (
+      {user ? (
+      // {isLogging ? (
         <>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Chats" component={Chats} />
+          <Stack.Screen name="Login" component={Login} />
         </>
       ) : (
         <>
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Login" component={Login} options={{
+            headerShown: false
+          }} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Chats" component={Chats} />
